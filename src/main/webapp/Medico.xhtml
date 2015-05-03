@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <h:form id="f_medico">
+
+            <p:accordionPanel id="socio_demo" >
+
+                <p:tab id="seccion_p" title="Medico">
+                    <h:panelGrid columns="3" cellpadding="10">
+
+
+                        <h:outputLabel>Nombre:</h:outputLabel>
+                        <p:inputText id="p_nombre" value="#{medico.nombre}"  />
+                        <h:outputLabel/>
+                        <h:outputLabel>Apellidos</h:outputLabel>
+                        <p:inputText id="p_apellidos" value="#{medico.apellidos}"  />
+                        <h:outputLabel/>
+
+                        <h:outputLabel>Sexo</h:outputLabel>
+                        <h:selectOneMenu id="p_sexo" value="#{medico.fenotipoSexual}" >
+                            <f:selectItems value="#{fenotipoSexual.sexos}" />
+                        </h:selectOneMenu>
+                        <h:outputLabel/>
+
+                        <p:outputLabel for="p_nacimiento" value="Fecha Nacimiento:" />
+
+                        <p:calendar id="p_nacimiento"  immediate="true"  value="#{medico.fechaNacimiento}" pattern="dd/MM/yyyy" mask="true" >
+                            <p:ajax event="dateSelect" process="@this"
+                                    listener="#{vistaPaciente.actualizarFechaNacimiento}" update="@(#f_medico)" />
+
+                        </p:calendar>
+                        <h:outputLabel>dd/MM/AAAA</h:outputLabel>   
+                        <h:outputLabel>Meses</h:outputLabel>
+                        <p:inputText id="p_meses" value="#{medico.meses}"  >
+                        </p:inputText>
+                        <h:outputLabel/>
+
+                        <h:outputLabel>Días de Nacido</h:outputLabel>
+                        <p:inputText id="p_dias" value="#{medico.dias}"  />
+
+                    </h:panelGrid>
+                </p:tab>
+               
+
+            </p:accordionPanel>
+        </h:form>   
+    </h:body>
+</html>
